@@ -5,21 +5,21 @@ package:
   version: {{ version }}
 
 source:
-  url: https://pypi.io/packages/source/j/jupyterlab-webrtc-docprovider/jupyterlab-webrtc-docprovider-{{ version }}.tar.gz
+  url: https://pypi.org/packages/source/j/jupyterlab-webrtc-docprovider/jupyterlab-webrtc-docprovider-{{ version }}.tar.gz
   sha256: a1578d88ed8e46c0b74af39df364eb73be60d494ab5ff7bad486c0ef9c04b668
 
 build:
   noarch: python
   script: {{ PYTHON }} -m pip install . -vv
-  number: 0
+  number: 1
 
 requirements:
   host:
     - jupyter-packaging >=0.10,<1.0
     - pip
-    - python >=3.7
+    - python {{ python_min }}
   run:
-    - python >=3.7
+    - python >={{ python_min }}
 
 test:
   imports:
@@ -34,6 +34,7 @@ test:
     - pip
     - pytest-cov
     - jupyterlab >=3.1,<4
+    - python {{ python_min }}
 
 about:
   home: https://github.com/jupyterlite/jupyterlab-webrtc-docprovider
