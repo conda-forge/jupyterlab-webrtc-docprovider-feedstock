@@ -9,15 +9,17 @@ source:
   sha256: a1578d88ed8e46c0b74af39df364eb73be60d494ab5ff7bad486c0ef9c04b668
 
 build:
-  noarch: python
-  script: {{ PYTHON }} -m pip install . -vv
   number: 1
+  noarch: python
+  script:
+    - {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation --disable-pip-version-check
 
 requirements:
   host:
     - jupyter-packaging >=0.10,<1.0
     - pip
     - python {{ python_min }}
+    - setuptools
   run:
     - python >={{ python_min }}
 
